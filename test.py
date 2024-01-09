@@ -1,19 +1,27 @@
 import streamlit as st
 
-def addition_calculator():
-    st.title("ADDITION Calculator")
+def calculator():
+    st.title("Simple Calculator")
 
-    x = st.number_input("Enter first number:")
-    y = st.number_input("Enter second number:")
+    num1 = st.number_input("Enter the first number", step=1.0)
+    operation = st.selectbox("Select operation", ["Addition", "Subtraction", "Multiplication", "Division"])
+    num2 = st.number_input("Enter the second number", step=1.0)
 
-    add_button = st.button("Add Numbers")
+    result = 0
 
-    if add_button:
-        sum_result = x + y
-        st.success(f"Sum of your numbers is: {sum_result}")
+    if operation == "Addition":
+        result = num1 + num2
+    elif operation == "Subtraction":
+        result = num1 - num2
+    elif operation == "Multiplication":
+        result = num1 * num2
+    elif operation == "Division":
+        if num2 != 0:
+            result = num1 / num2
+        else:
+            st.error("Cannot divide by zero. Please enter a non-zero value for the second number.")
 
-if __name__ == "__main__":
-    addition_calculator()
+    st.write(f"Result: {result}")
 
-
-
+if _name_ == "_main_":
+    calculator()
